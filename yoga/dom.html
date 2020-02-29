@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body>
+    <h1 id='main-heading' style="margin: 0; padding: 0; cursor: pointer;">Hello world!!!</h1>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <script>
+       
+
+	   let leftOffset = 0;
+	   let topOffset = 0;
+	   let moveHeading = function(){
+		   if(leftOffset < 200 && topOffset <= 0) {
+			   $("#main-heading").offset({left: leftOffset++});
+			   
+		   } else if (leftOffset >= 200 & topOffset < 200) {
+			   $('#main-heading').offset({top: topOffset++});
+			   
+		   } else if (leftOffset > 0 && topOffset >= 200) {
+        		$("#main-heading").offset({left: leftOffset--});
+            
+			} else if (leftOffset <= 0 && topOffset > 0) {
+				$("#main-heading").offset({top: topOffset--});
+			}
+		   
+	   };
+	    
+	   function intervalId(func, time){
+			setInterval(func, time);
+	   };
+	   
+	//    let stopMove = $('#main-heading').click(function() {
+	// 	   clearInterval(intervalId);
+	//    });
+	  
+	   let moveGame = function(func, time){
+		   for (let i = 0; i < 6; i++) {
+			   intervalId(func, time);
+			   if ($('#main-heading').click) {
+					clearInterval(intervalId);
+					console.log("click");
+					intervalId(func, time - 5);
+			   } else if (i == 5) {
+					console.log("You win!!!");
+			   }
+		   }
+		   
+	   }
+	   
+	   moveGame(moveHeading, 30);
+	   
+       
+       
+        
+        
+        
+        
+    </script>
+    
+</body>
+</html>
