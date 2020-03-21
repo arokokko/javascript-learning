@@ -42,7 +42,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
     // timer
 
-    let deadline = '2020-03-01 GMT+0700';
+    let deadline = '2020-03-21 GMT+0700';
 
     function getTimeRemaining(endtime) {
         let t = Date.parse(endtime) - Date.parse(new Date()),
@@ -118,5 +118,32 @@ window.addEventListener('DOMContentLoaded', function(){
             overlay.style.display = 'block';
             document.body.style.overflow = 'hidden';
         });
+    });
+
+    // post form
+
+    let message = {
+        loading: "Загрузка...",
+        success: "Спасибо. Скоро мы с вами свяжемся!",
+        failure: "Упсс... Что-то пошло не так..."
+    };
+
+    let form = document.querySelector('.main-form'),
+        input = form.getElementsByTagName('input'),
+        statusMessage = document.createElement('div');
+
+    statusMessage.classList.add('status');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        form.appendChild(statusMessage);
+
+        let request = new XMLHttpRequest();
+        request.open('POST', 'server.php');
+        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        let formData = new FormData(form);
+        request.send(formData);
+
     });
 });
