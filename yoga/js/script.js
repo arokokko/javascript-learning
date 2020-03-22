@@ -129,20 +129,25 @@ window.addEventListener('DOMContentLoaded', function(){
     };
 
     let form = document.querySelector('.main-form'),
-        input = form.getElementsByTagName('input'),
+        contactForm = document.querySelector('#form'),
         statusMessage = document.createElement('div');
 
     statusMessage.classList.add('status');
 
-    form.addEventListener('submit', function(event) {
+    form.addEventListener('submit', sendRequest);
+    contactForm.addEventListener('submit', sendRequest);
+    
+    function sendRequest(event){
         event.preventDefault();
-        form.appendChild(statusMessage);
+        this.appendChild(statusMessage);
 
         let request = new XMLHttpRequest();
         request.open('POST', 'server.php');
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-        let formData = new FormData(form);
+        let formData = new FormData(this),
+            input = this.getElementsByTagName('input');
+
         request.send(formData);
 
         request.addEventListener('readystatechange', function(){
@@ -159,5 +164,5 @@ window.addEventListener('DOMContentLoaded', function(){
             input[i].value = '';
         }
 
-    });
+    }
 });
