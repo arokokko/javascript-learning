@@ -155,6 +155,7 @@ window.addEventListener('DOMContentLoaded', function(){
                 statusMessage.innerHTML = message.loading;
             } else if (request.readyState === 4 && request.status == 200) {
                 statusMessage.innerHTML = message.success;
+                setTimeout(closeModal, 3000);
             } else {
                 statusMessage.innerHTML = message.failure;
             }
@@ -164,5 +165,14 @@ window.addEventListener('DOMContentLoaded', function(){
             input[i].value = '';
         }
 
+        
+
     }
+
+    let closeModal = function() {
+        if (overlay.style.display == 'block') {
+            overlay.style.display = 'none';
+            document.body.style.overflow = ''; 
+        }
+    };
 });
