@@ -142,8 +142,16 @@ window.addEventListener('DOMContentLoaded', function(){
         request.open('POST', 'server.php');
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-        let formData = new FormData(form);
-        request.send(formData);
+        let formData = new FormData(form);  // отправляем данные на сервер через formData
+        request.send(formData);             // в index.html - name="phone" это ключ, а то что ввел пользователь это значение
+
+        /* let formData = new FormData(form);     отправляем данные на сервер через JSON
+        let obj = {};                             создаем новый объект
+        formData.forEach(function(value, key) {   через цикл forEach записываем в новый объект данные
+            obj[key] = value;
+        });
+        let json = JSON.stringify(obj);           переводим новый объект в JSON 
+        request.send(json);                       отправляем на сервер  */
 
         request.addEventListener('readystatechange', function(){
             if (request.readyState < 4) {
@@ -156,7 +164,7 @@ window.addEventListener('DOMContentLoaded', function(){
         });
 
         for (let i = 0; i < input.length; i++) {
-            input[i].value = '';
+            input[i].value = '';            //clear form
         }
 
     });
