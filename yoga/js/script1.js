@@ -225,16 +225,29 @@ window.addEventListener('DOMContentLoaded', function(){
         dots[sliderIndex - 1].classList.add('dot-active');
     }
 
-    function plusSlides(n) {
+    function plusSlides(n) {            //добавляем индекс для активного слайда
         showSlides(sliderIndex += n);
     }
 
-    prev.addEventListener('click', function(){
+    prev.addEventListener('click', function(){     // при нажатии prev индекс уменьшается - отлистываем назад
         plusSlides(-1);
     });
 
-    next.addEventListener('click', function() {
+    next.addEventListener('click', function() {      // при нажатии next индекс увеличивается - листаем вперед 
         plusSlides(1);
+    });
+
+
+    function currentSlides(n) {      // для перемещения по слайдам с помощью точек
+        showSlides(sliderIndex = n);
+    }
+
+    dotsWrap.addEventListener('click', function(event) {
+        for(let i = 0; i < dots.length; i++) {
+            if (event.target.classList.contains('dot') && event.target == dots[i]) {
+                currentSlides(i + 1);
+            }
+        }
     });
 
     
