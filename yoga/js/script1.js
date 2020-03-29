@@ -206,6 +206,15 @@ window.addEventListener('DOMContentLoaded', function(){
     showSlides(sliderIndex);
 
     function showSlides(n) {
+
+        if (n > sliders.length) {           // проверка если заканчиваются слайды то переходим на самый первый
+            sliderIndex = 1;
+        }
+
+        if (n < 1) {
+            sliderIndex = sliders.length;
+        }
+
         sliders.forEach((item) => item.style.display = 'none');
         // for (let i = 0; i < sliders.length; i++) {      тоже самое что и методом forEach
         //     sliders[i].style.display = 'none';
@@ -215,6 +224,18 @@ window.addEventListener('DOMContentLoaded', function(){
         sliders[sliderIndex - 1].style.display = 'block';
         dots[sliderIndex - 1].classList.add('dot-active');
     }
+
+    function plusSlides(n) {
+        showSlides(sliderIndex += n);
+    }
+
+    prev.addEventListener('click', function(){
+        plusSlides(-1);
+    });
+
+    next.addEventListener('click', function() {
+        plusSlides(1);
+    });
 
     
 });
