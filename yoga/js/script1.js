@@ -190,6 +190,18 @@ window.addEventListener('DOMContentLoaded', function(){
     
     }
     
-    sendForm(form);
+    sendForm(form); 
     sendForm(formDown);
+
+
+    //slider 
+
+    let sliderIndex = 1,
+        sliders = document.querySelectorAll('.slider-item'),
+        prev = document.querySelector('.prev'),
+        next = document.querySelector('.next'),
+        dotsWrap = document.querySelector('.slider-dots'),
+        dots = document.querySelectorAll('.dot');
+
+    
 });
