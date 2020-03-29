@@ -203,5 +203,18 @@ window.addEventListener('DOMContentLoaded', function(){
         dotsWrap = document.querySelector('.slider-dots'),
         dots = document.querySelectorAll('.dot');
 
+    showSlides(sliderIndex);
+
+    function showSlides(n) {
+        sliders.forEach((item) => item.style.display = 'none');
+        // for (let i = 0; i < sliders.length; i++) {      тоже самое что и методом forEach
+        //     sliders[i].style.display = 'none';
+        // }
+        dots.forEach((item) => item.classList.remove('dot-active'));
+
+        sliders[sliderIndex - 1].style.display = 'block';
+        dots[sliderIndex - 1].classList.add('dot-active');
+    }
+
     
 });
